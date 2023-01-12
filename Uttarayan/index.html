@@ -59,6 +59,7 @@
             if(name=="" || name==NaN){
                 location.reload();
             }
+            name = name.replace(" ", "+");
             link = window.location.hostname + window.location.pathname + "?names=" + name;
             document.getElementById("input").style.display = "none";
             document.getElementById("share").style.display = "flex";
