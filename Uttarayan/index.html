@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="kite.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="https://kit.fontawesome.com/09d21e6cd0.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Happy uttarayan</title>
+</head>
+
+<body>
+    <h2 class="name">Naitik Soni <br> Wishes you</h2>
+    <h1>
+        <span id="one">Happy</span><br><span id="two">Makar</span><br><span id="three">Sankranti</span>
+    </h1>
+    <img src="background.png" alt="">
+
+    <div id="division">
+        <form id="input">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="button" value="Ok" onclick="getlink()">
+        </form>
+
+        <form id="share">
+            <input type="text" id="myname" name="name" placeholder="Enter your name" required readonly>
+            <input type="button" value="Copy" onclick="copy()">
+        </form>
+    </div>
+
+    <button id="button" onclick="generate()">Share with your friends</button>
+
+
+    <script>
+        var link;
+        var params = new URLSearchParams(location.search);
+        var variables = params.get('names');
+        if(variables!=null){
+            console.log(variables);
+            document.getElementsByClassName("name")[0].innerHTML = variables + "<br> Wishes you";
+        }
+        
+
+        function generate(){
+            document.getElementById("division").style.display = "flex";
+            document.getElementById("share").style.display = "none";
+        }
+
+        function getlink(){
+            var name = document.getElementById("name").value;
+            if(name=="" || name==NaN){
+                location.reload();
+            }
+            link = window.location.hostname + window.location.pathname + "?names=" + name;
+            document.getElementById("input").style.display = "none";
+            document.getElementById("share").style.display = "flex";
+            document.getElementById("myname").value = link;
+        }
+
+        function copy(){
+            document.querySelector('#myname').select();
+            document.execCommand('copy');
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
+
+<!--<i class="fa-solid fa-share-nodes"></i>w-->
